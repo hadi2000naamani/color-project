@@ -5,7 +5,7 @@ import Navbar from "./Navbar";
 
 
 
-export default class Palette extends Component {
+class Palette extends Component {
     constructor(props) {
         super(props);
         this.state = { level: 500, format: "hex" };
@@ -38,3 +38,5 @@ export default class Palette extends Component {
         )
     }
 }
+
+export default Palette;
