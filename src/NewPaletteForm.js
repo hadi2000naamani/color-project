@@ -16,6 +16,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { ChromePicker } from "react-color";
 import { Button, colors } from '@material-ui/core';
 import { hex } from 'chroma-js';
+import DraggableColorBox from "./DraggableColorBox";
 import { DateRangePicker, SingleDatePicker, DayPickerRangeController } from 'react-dates';
 
 const drawerWidth = 240;
@@ -61,6 +62,7 @@ const styles = theme => ({
     },
     content: {
         flexGrow: 1,
+        height:'calc(100vh - 64px)',
         padding: theme.spacing(3),
         transition: theme.transitions.create('margin', {
             easing: theme.transitions.easing.sharp,
@@ -162,11 +164,11 @@ class NewPaletteForm extends Component {
                     })}
                 >
                     <div className={classes.drawerHeader} />
-                    <ul>
+                    
                         {this.state.colors.map(color => (
-                            <li style={{ background: color }}>{color}</li>
+                            <DraggableColorBox color={color} />
                         ))}
-                    </ul>
+                    
                 </main>
             </div>
         );
