@@ -30,23 +30,7 @@ const styles = theme => ({
     root: {
         display: 'flex',
     },
-    appBar: {
-        transition: theme.transitions.create(['margin', 'width'], {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen
-        })
-    },
-    appBarShift: {
-        width: `calc(100% - ${drawerWidth}px)`,
-        marginLeft: drawerWidth,
-        transition: theme.transitions.create(['margin', 'width'], {
-            easing: theme.transitions.easing.easeOut,
-            duration: theme.transitions.duration.enteringScreen,
-        }),
-    },
-    menuButton: {
-        marginRight: theme.spacing(2),
-    },
+
     hide: {
         display: 'none',
     },
@@ -96,7 +80,7 @@ class NewPaletteForm extends Component {
             colors: this.props.palettes[0].colors,
             newPaletteName: ""
         };
-        
+
         this.addNewColor = this.addNewColor.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -125,7 +109,7 @@ class NewPaletteForm extends Component {
     handleDrawerClose = () => {
         this.setState({ open: false });
     };
-    
+
     addNewColor(newColor) {
         this.setState({ colors: [... this.state.colors, newColor], newColorName: "" });
     }
@@ -169,7 +153,13 @@ class NewPaletteForm extends Component {
 
         return (
             <div className={classes.root}>
-                <PaletteFormNav handleDrawerOpen={this.handleDrawerOpen} handleSubmit ={this.handleSubmit} open={open} classes={classes} palettes={palettes} />
+                <PaletteFormNav
+                    handleDrawerOpen={this.handleDrawerOpen}
+                    handleSubmit={this.handleSubmit}
+                    open={open}
+                    palettes={palettes}
+
+                />
                 <Drawer
                     className={classes.drawer}
                     variant="persistent"
@@ -196,11 +186,11 @@ class NewPaletteForm extends Component {
                             Random Color
                         </Button>
                     </div>
-                    
-                    <ColorPickerForm 
-                    addNewColor={this.addNewColor} 
-                    paletteIsFull= {paletteIsFull} 
-                    colors={colors}    
+
+                    <ColorPickerForm
+                        addNewColor={this.addNewColor}
+                        paletteIsFull={paletteIsFull}
+                        colors={colors}
                     />
                 </Drawer>
                 <main
