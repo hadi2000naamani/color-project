@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { withStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
+import DraggableColorList from "./DraggableColorList";
 import classNames from "classnames";
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -16,9 +17,9 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { ChromePicker } from "react-color";
 import { Button, colors } from '@material-ui/core';
 import { hex } from 'chroma-js';
-import DraggableColorBox from "./DraggableColorBox";
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { DateRangePicker, SingleDatePicker, DayPickerRangeController } from 'react-dates';
+import { arrayMove } from 'react-sortable-hoc';
 
 const drawerWidth = 240;
 
@@ -95,6 +96,7 @@ class NewPaletteForm extends Component {
         this.addNewColor = this.addNewColor.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.removeColor = this.removeColor.bind(this);
     }
 
     componentDidMount() {
@@ -139,11 +141,16 @@ class NewPaletteForm extends Component {
         this.props.savePalette(newPalette);
         this.props.history.push("/");
     }
-    removeColor(colorName){
+    removeColor(colorName) {
         this.setState({
-            colors:this.state.colors.filter(color => color.name !== colorName)
+            colors: this.state.colors.filter(color => color.name !== colorName)
         })
     }
+    onSortEnd = ({ oldIndex, newIndex }) => {
+        this.setState(({ colors }) => ({
+            colors: arrayMove(colors, oldIndex, newIndex),
+        }));
+    };
     render() {
         const { classes } = this.props;
         const { open } = this.state;
@@ -215,9 +222,12 @@ class NewPaletteForm extends Component {
                 >
                     <div className={classes.drawerHeader} />
 
-                    {this.state.colors.map(color => (
-                        <DraggableColorBox key={color.name} handleClick={() => this.removeColor(color.name)} color={color.color} name={color.name} />
-                    ))}
+                    <DraggableColorList
+                        colors={this.state.colors}
+                        removeColor={this.removeColor}
+                        axis='xy'
+                        onSortEnd={this.onSortEnd}
+                    />
 
                 </main>
             </div>
