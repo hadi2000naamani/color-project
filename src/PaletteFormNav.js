@@ -22,7 +22,7 @@ import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { DateRangePicker, SingleDatePicker, DayPickerRangeController } from 'react-dates';
 import { arrayMove } from 'react-sortable-hoc';
 
-const drawerWidth = 240;
+const drawerWidth = 400;
 
 const styles = theme => ({
     root: {
@@ -103,7 +103,6 @@ class PaletteFormNav extends Component {
                             <Button type='submit' variant='contained' color='primary'>
                                 Save Palette
                             </Button>
-
                         </ValidatorForm>
                         <Link to="/">
                             <Button variant='contained' color='secondary'>Go Back</Button>
