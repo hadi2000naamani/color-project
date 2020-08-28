@@ -22,23 +22,8 @@ import { hex } from 'chroma-js';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { DateRangePicker, SingleDatePicker, DayPickerRangeController } from 'react-dates';
 import { arrayMove } from 'react-sortable-hoc';
+import styles from "./styles/ColorPickerFormStyles";
 
-const styles ={
-    picker:{
-        width:'100% !important',
-        marginTop:'2rem'
-    },
-    addColor:{
-        width:'100%',
-        padding: '1rem',
-        marginTop:'1rem',
-        fontSize: '2rem'
-    },
-    colorNameInput:{
-        width:'100%',
-        height:'70px'
-    }
-}
 
 class ColorPickerForm extends Component {
     constructor(props) {
