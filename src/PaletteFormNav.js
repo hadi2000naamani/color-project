@@ -23,6 +23,7 @@ import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { DateRangePicker, SingleDatePicker, DayPickerRangeController } from 'react-dates';
 import { arrayMove } from 'react-sortable-hoc';
 import styles from "./styles/PaletteFormNavStyles";
+import AddToPhotosIcons from "@material-ui/icons/AddToPhotos";
 
 
 class PaletteFormNav extends Component {
@@ -66,7 +67,7 @@ class PaletteFormNav extends Component {
                             edge="start"
                             className={clsx(classes.menuButton, open && classes.hide)}
                         >
-                            <MenuIcon />
+                            <AddToPhotosIcons />
                         </IconButton>
                         <Typography variant="h6" color='inherit' noWrap>
                             Create A Palette
